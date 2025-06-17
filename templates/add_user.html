@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New User</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>➕ Add New User</h1>
+        <form method="POST">
+            <label>Username:</label>
+            <input type="text" name="username" required><br>
+
+            <label>Email:</label>
+            <input type="email" name="email" required><br>
+
+            <label>Password:</label>
+            <input type="password" name="password" required><br>
+
+            <label>Role:</label>
+            <select name="role" required>
+                <option value="Admin">Admin</option>
+                <option value="Manager">Manager</option>
+                <option value="Salesperson">Salesperson</option>
+            </select><br><br>
+
+            <button type="submit">Create User</button>
+        </form>
+        <br>
+        <a href="/admin/users">🔙 Back to Users</a>
+    </div>
+</body>
+</html>

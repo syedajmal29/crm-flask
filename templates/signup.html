@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="split-container">
+        <div class="left-panel">
+            <h1>Join Us and<br>Unlock Endless<br>Possibilities!</h1>
+            <p>
+                Welcome to <b>Crm</b>, where your journey begins. Sign up now to access exclusive features, personalized recommendations, and seamless user experience.
+            </p>
+            <div class="testimonial">
+                <div class="stars">★★★★★</div>
+                <blockquote>
+                    “We love <b>CRM!</b> our designers were using it for their projects, so we already knew what kind of design they want.”
+                </blockquote>
+                <div class="author">
+                    <div class="avatar"></div>
+                    <div>
+                        <div class="name">Ajmal</div>
+                        <div class="role">Co-Founder, Design.co</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-panel">
+            <form method="post" action="/signup" class="signup-form">
+                <h2>Sign up to <span class="brand">Ajmal</span></h2>
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Username" required>
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Password" required>
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Email" required>
+                <label>Role</label>
+                <select name="role" required>
+                    
+                    <option value="Admin">Admin</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Salesperson">Salesperson</option>
+                </select>
+                <button type="submit" class="primary-btn">Create Account</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

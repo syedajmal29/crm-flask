@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="split-container">
+        <div class="left-panel">
+            <h1>Welcome Back!</h1>
+            <p>
+                Log in to access your dashboard, manage your projects, and collaborate with your team.
+            </p>
+            <div class="testimonial">
+                <div class="stars">★★★★★</div>
+                <blockquote>
+                    “CRM makes our workflow seamless and efficient.”
+                </blockquote>
+                <div class="author">
+                    <div class="avatar"></div>
+                    <div>
+                        <div class="name">Ajmal</div>
+                        <div class="role">Co-Founder, Design.co</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-panel">
+            <form method="POST" class="signup-form">
+                <h2>Login to <span class="brand">Ajmal</span></h2>
+                <label>Username</label>
+                <input type="text" name="username" required>
+                <label>Password</label>
+                <input type="password" name="password" required>
+                <button type="submit" class="primary-btn">Login</button>
+                {% if error %}
+                <p style="color: #e53935;">{{ error }}</p>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
