@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log Activity</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Log Call/Meeting for Lead #{{ lead_id }}</h2>
+        <form method="POST">
+            <label for="activity_type">Type:</label>
+            <select name="activity_type" id="activity_type" required>
+                <option value="Call">Call</option>
+                <option value="Meeting">Meeting</option>
+                <option value="Email">Email</option>
+            </select><br><br>
+            <label for="summary">Summary:</label><br>
+            <textarea name="summary" id="summary" required></textarea><br><br>
+            <label for="activity_date">Date:</label>
+            <input type="date" name="activity_date" id="activity_date"><br><br>
+            <button type="submit">Log Activity</button>
+        </form>
+        <br>
+        <a href="/sales/leads">🔙 Back to Leads</a>
+    </div>
+</body>
+</html>

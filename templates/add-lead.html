@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Lead</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+   <h1>{{ '✏️ Edit Lead' if lead else '➕ Add New Lead' }}</h1>
+<form method="POST" action="">
+    <label>Name:</label><br>
+    <input type="text" name="name" value="{{ lead[1] if lead else '' }}" required><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" name="email" value="{{ lead[2] if lead else '' }}"><br><br>
+
+    <label>Phone:</label><br>
+    <input type="text" name="phone" value="{{ lead[3] if lead else '' }}"><br><br>
+
+    <label>Status:</label><br>
+    <select name="status" required>
+        {% for s in ['New', 'Contacted', 'Qualified', 'Converted'] %}
+        <option value="{{ s }}" {% if lead and lead[4] == s %}selected{% endif %}>{{ s }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>Assign To:</label><br>
+    <select name="assigned_to">
+        <option value="">-- Select User --</option>
+        {% for user in users %}
+        <option value="{{ user[0] }}" {% if lead and lead[5] == user[0] %}selected{% endif %}>{{ user[1] }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <button type="submit">{{ 'Update Lead' if lead else 'Save Lead' }}</button>
+</form>
+<br>
+<a href="/admin/edit-lead/{{ lead[0] }}">Edit</a>
+<a href="/admin/leads">⬅️ Back to Leads</a>
+
+</body>
+</html>

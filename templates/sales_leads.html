@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Assigned Leads</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>📋 My Assigned Leads</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lead in leads %}
+                <tr>
+                    <td>{{ lead[1] }}</td>
+                    <td>{{ lead[2] }}</td>
+                    <td>{{ lead[3] }}</td>
+                    <td>{{ lead[4] }}</td>
+                    <td>
+                        <a href="{{ url_for('update_lead_status', lead_id=lead[0]) }}">✏️ Update Status</a> |
+                        <a href="{{ url_for('log_activity_sales', lead_id=lead[0]) }}">📞 Log Call/Meeting</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5">No leads assigned.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <a href="/sales-dashboard">🔙 Back to Dashboard</a>
+    </div>
+</body>
+</html>

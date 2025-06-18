@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Salesperson Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="dashboard-layout">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <span class="emoji">👋</span>
+            <span class="user">Hello, {{ username }}!</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/sales/leads">📋 Assigned Leads</a></li>
+                <li><a href="/logout">🚪 Logout</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <main class="main-content">
+        <h2>My Assigned Leads</h2>
+        <table class="leads-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lead in leads %}
+                <tr>
+                    <td>{{ lead[1] }}</td>
+                    <td>{{ lead[2] }}</td>
+                    <td>{{ lead[3] }}</td>
+                    <td>{{ lead[4] }}</td>
+                    <td>
+                        <a class="action-btn" href="{{ url_for('update_lead_status', lead_id=lead[0]) }}">✏️ Update</a>
+                        <a class="action-btn" href="{{ url_for('log_activity_sales', lead_id=lead[0]) }}">📞 Log</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5">No leads assigned.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</div>
+</body>
+</html>

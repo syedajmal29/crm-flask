@@ -2,10 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Manager Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    
+    <div class="container">
+        <h2>Welcome, {{ username }} (Manager)</h2>
+        <p>This is your manager dashboard.</p>
+        
+        <ul>
+            <li><a href="#">🔍 View Assigned Leads</a></li>
+            <li><a href="#">🧑‍🤝‍🧑 Assign Leads to Sales Team</a></li>
+            <li><a href="#">📈 Track Lead Progress</a></li>
+            <li><a href="/logout">🚪 Logout</a></li>
+        </ul>
+    </div>
 </body>
 </html>

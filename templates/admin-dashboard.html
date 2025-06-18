@@ -3,36 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>👋 Welcome, Admin!</h1>
-        <p>This is your dashboard. Use the links below to manage the CRM system.</p>
-
-        <div class="card">
-            <h2>👥 User Management</h2>
-            <ul>
-                <li><a href="/admin/users">View All Users</a></li>
-                <li><a href="admin/add-user">Add New User</a></li>
-            </ul>
+<div class="dashboard-layout">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <span class="emoji">👋</span>
+            <span class="user">Hello, Admin!</span>
         </div>
-
-        <div class="card">
-            <h2>📋 Leads</h2>
+        <nav>
             <ul>
-                <li><a href="#">View Leads</a></li>
-                <li><a href="#">Add Lead</a></li>
+                <li><a href="/admin/users">👥 User Management</a></li>
+                <li><a href="/admin/leads">📋 Leads</a></li>
+                <li><a href="/logout">🚪 Logout</a></li>
+                <a class="primary-btn" href="{{ url_for('logout') }}">🚪 Logout</a>
             </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <button class="create-view-btn">+ Create a view</button>
         </div>
-
-        <div class="card">
-            <h2>📊 Reports</h2>
-            <ul>
-                <li><a href="#">View Dashboard</a></li>
-                <li><a href="#">Export Data</a></li>
-            </ul>
+    </aside>
+    <main class="main-content">
+        <div class="dashboard-header">
+            <h1>👋 Welcome, Admin!</h1>
+            <div class="dashboard-actions">
+                <button class="primary-btn">+ Create</button>
+            </div>
         </div>
-    </div>
+        <p class="dashboard-desc">This is your dashboard. Use the links and cards below to manage the CRM system.</p>
+        <div class="card-grid">
+            <div class="card">
+                <h2>👥 User Management</h2>
+                <ul>
+                    <li><a href="/admin/users">View All Users</a></li>
+                    <li><a href="/admin/add-user">Add New User</a></li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2>📋 Leads</h2>
+                <ul>
+                    <li><a href="/admin/leads">View Leads</a></li>
+                    <li><a href="/admin/add-lead">Add Lead</a></li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2>📊 Reports</h2>
+                <ul>
+                    <li><a href="/dashboard">View Dashboard</a></li>
+                    <li><a href="#">Export Data</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="card chart-card">
+            <h2>📈 Lead Status Overview</h2>
+            <canvas id="leadChart" height="80"></canvas>
+        </div>
+    </main>
+</div>
+<script>
+    // Example Chart.js usage (replace with your real data)
+    const ctx = document.getElementById('leadChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['New', 'Contacted', 'Qualified', 'Converted'],
+            datasets: [{
+                label: 'Leads',
+                data: [12, 19, 7, 5],
+                backgroundColor: ['#60a5fa', '#facc15', '#34d399', '#f87171']
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false },
+                title: { display: false }
+            }
+        }
+    });
+</script>
 </body>
 </html>

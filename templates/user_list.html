@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>👥 User Management</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th><th>Username</th><th>Email</th><th>Role</th><th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+                <td>{{ user[2] }}</td>
+                <td>{{ user[3] }}</td>
+                <td>
+                    <a href="/admin/edit-user/{{ user[0] }}">✏️ Edit</a> |
+                    <a href="/admin/delete-user/{{ user[0] }}" onclick="return confirm('Are you sure?')">🗑️ Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="/admin/add-user">➕ Add New User</a>
+</body>
+</html>

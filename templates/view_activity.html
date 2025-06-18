@@ -1,0 +1,21 @@
+<h2>Activity Timeline</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Type</th>
+      <th>Summary</th>
+      <th>Logged By</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for activity in activities %}
+    <tr>
+      <td>{{ activity[2] }}</td>
+      <td>{{ activity[0] }}</td>
+      <td>{{ activity[1] }}</td>
+      <td>{{ activity[3] or "N/A" }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
