@@ -1,3 +1,4 @@
+<!-- templates/manager_dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,15 +8,43 @@
 </head>
 <body>
     <div class="container">
-        <h2>Welcome, {{ username }} (Manager)</h2>
-        <p>This is your manager dashboard.</p>
+        <h2>👨‍💼 Manager Dashboard</h2>
         
-        <ul>
-            <li><a href="#">🔍 View Assigned Leads</a></li>
-            <li><a href="#">🧑‍🤝‍🧑 Assign Leads to Sales Team</a></li>
-            <li><a href="#">📈 Track Lead Progress</a></li>
-            <li><a href="/logout">🚪 Logout</a></li>
-        </ul>
+        <p>Welcome, {{ session['username'] }}!</p>
+        <h3>Team Leads Overview</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Lead Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                    <th>Assigned To</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lead in leads %}
+                <tr>
+                    <td>{{ lead[1] }}</td>
+                    <td>{{ lead[2] }}</td>
+                    <td>{{ lead[3] }}</td>
+                    <td>{{ lead[4] }}</td>
+                    <td>{{ lead[5] }}</td>
+                    <td>
+                        <a href="{{ url_for('view_leads', lead_id=lead[0]) }}">🔍 View</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr><td colspan="6">No leads available.</td></tr>
+                {% endfor %}
+            </tbody>
+            
+        </table>
+
+        <br>
+        <a href="/logout">🚪 Logout</a>
     </div>
 </body>
 </html>

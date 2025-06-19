@@ -31,7 +31,7 @@ def signup():
             conn.commit()
             cur.close()
             conn.close()
-            return "User registered successfully!"
+            return render_template('login.html')
         except Exception as e:
             return f"An error occurred: {e}"
     return render_template('signup.html')
@@ -82,11 +82,30 @@ def admin_dashboard():
     if 'user_id' in session and session['role'] == 'Admin':
         return render_template('admin-dashboard.html')
     return "Access denied. Admins only."
+# @app.route('/manager-dashboard')
+# def manager_dashboard():
+#     if 'user_id' in session and session['role'] == 'Manager':
+#         return render_template('manager-dashboard.html')
+#     return "Access denied. Managers only."
 @app.route('/manager-dashboard')
 def manager_dashboard():
-    if 'user_id' in session and session['role'] == 'Manager':
-        return render_template('manager-dashboard.html')
-    return "Access denied. Managers only."
+    if 'username' not in session or session.get('role') != 'Manager':
+        return "Access denied. Managers only."
+    user_id = session['user_id']
+    
+    conn = psycopg2.connect(
+        host="localhost",
+        database="crm_db",
+        user="your_db_user",
+        password="your_db_password"
+    )
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM leads")
+    leads = cur.fetchall()
+    conn.close()
+
+    return render_template('manager-dashboard.html', leads=leads)
+
 @app.route('/sales-dashboard')
 def sales_dashboard():
     if 'user_id' not in session or session.get('role') != 'Salesperson':
@@ -481,6 +500,7 @@ def log_activity_sales(lead_id):
         conn.close()
         return redirect('/sales/leads')
     return render_template('log_activity.html', lead_id=lead_id)
+
 
 
 @app.route('/logout')
